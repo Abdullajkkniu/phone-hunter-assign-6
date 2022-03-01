@@ -1,9 +1,14 @@
+// show search result
 const loadMobile =()=>{
   const searchField =document.getElementById('search-input');
   const searchText = searchField.value;
   const warnings = document.getElementById('warning')
   if(searchText ==0){
     warnings.style.display = 'block';
+    const cardShow = document.getElementById('card-show');
+    cardShow.textContent='';
+    const detailsShow = document.getElementById('details-show');
+    detailsShow.textContent = '';
   }
   else{
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
@@ -20,19 +25,23 @@ const displayResult =(brand)=>{
   var brands = brand.slice(0,20);
   const cardShow = document.getElementById('card-show');
   cardShow.textContent='';
+  const detailsShow = document.getElementById('details-show');
+detailsShow.textContent = '';
+
   if(brands==false){
-    alert('no result found')
+    alert('Not found');
   }
   else{
+    
     brands.forEach(phone=>{
       const div = document.createElement('div');
       div.classList.add('col')
       div.innerHTML =`
-      <div class="card h-100 w-100 mb-10">
-          <img class="w-100" src="${phone.image}" class="card-img-top" alt="...">
+      <div class="card h-70 w-70 mb-10">
+          <img class="w-60 h-50" src="${phone.image}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">${phone.brand}</h5>
             <h5 class="card-title">${phone.phone_name}</h5>
+            <h5 class="card-title">${phone.brand}</h5>
             <button onclick="loadDetails('${phone.slug}')" class="btn btn-primary">Details</button>
           </div>
         </div>
@@ -43,7 +52,7 @@ const displayResult =(brand)=>{
       )
     }
   }
-
+// show details result
 const loadDetails =(phoneId)=>{
 console.log(phoneId)
 const url = ` https://openapi.programming-hero.com/api/phone/${phoneId}`
