@@ -38,7 +38,7 @@ detailsShow.textContent = '';
       div.classList.add('col')
       div.innerHTML =`
       <div class="card h-70 w-70 mb-10">
-          <img class="w-60 h-50" src="${phone.image}" class="card-img-top" alt="...">
+          <img class="mx-auto w-50 h-50" src="${phone.image}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
             <h5 class="card-title">${phone.brand}</h5>
